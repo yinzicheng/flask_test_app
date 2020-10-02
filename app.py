@@ -7,7 +7,7 @@ app_version = 1.0
 
 @app.route('/')
 def main():
-    return 'Hello World!'
+    return {'hello': 'world'}
 
 
 @app.route('/<username>')
