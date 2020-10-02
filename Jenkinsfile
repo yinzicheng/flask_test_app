@@ -22,12 +22,13 @@ pipeline {
             }
         }
 
-//        stage('Deploy') {
-//            steps {
-//                echo 'Deploy flask app'
-//                sh "./Jenkins/deploy.sh"
-//            }
-//        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy flask app'
+                sh "./Jenkins/deploy.sh"
+                input "Is app running?"
+            }
+        }
     }
 
 }
