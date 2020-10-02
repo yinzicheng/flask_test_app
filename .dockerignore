@@ -1,0 +1,5 @@
+**/venv
+**/Jenkins
+**/.pytest_cache
+**/.git
+**/.idea
