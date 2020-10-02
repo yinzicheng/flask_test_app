@@ -11,14 +11,14 @@ pipeline {
             steps {
                 echo 'Build flask app'
                 sh "chmod u+x ./Jenkins/*.sh && ls -al ./Jenkins"
-                sh "./Jenkins/build.sh"
+                sh "sudo ./Jenkins/build.sh"
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Test flask app'
-                sh "./Jenkins/test.sh"
+                sh "sudo ./Jenkins/test.sh"
             }
         }
 
