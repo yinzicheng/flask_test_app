@@ -10,14 +10,14 @@ pipeline {
 
             steps {
                 echo 'Build flask app'
-                sh "./Jenkins/build.sh"
+                sh "bash ./Jenkins/build.sh"
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Test flask app'
-                sh "./Jenkins/test.sh"
+                sh "bash ./Jenkins/test.sh"
             }
         }
 
