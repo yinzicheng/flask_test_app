@@ -1,10 +1,11 @@
 #!/bin/sh
 
 set -x
-python -m pip install --upgrade pip
 
 python -m venv venv
 source venv/bin/activate
+
+python -m pip install --upgrade pip
 
 ##following cmd only in dev enviroment
 # pip install flask pytest
@@ -12,4 +13,5 @@ source venv/bin/activate
 # pip freeze > requirements.txt
 
 pip install -r requirements.txt
+
 set +x
