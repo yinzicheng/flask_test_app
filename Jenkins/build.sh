@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 set -x
 python -m pip install --upgrade pip
