@@ -16,5 +16,5 @@ def hello_world(username):
 
 
 if __name__ == '__main__':
-    # run the app
+    # run the app - 1
     app.run()
