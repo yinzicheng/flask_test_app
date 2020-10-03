@@ -1,5 +1,5 @@
 # first stage
-FROM python:3.8-slim AS build
+FROM python:3.8-alpine AS build
 WORKDIR /var/app/src
 
 COPY requirements.txt .
@@ -11,7 +11,7 @@ RUN python -m pytest
 
 
 # second unnamed stage
-FROM python:3.8-slim
+FROM python:3.8-alpine
 WORKDIR /var/app/src
 
 # copy only the dependencies installation from the 1st stage image

@@ -1,16 +1,12 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.8-alpine'
-        }
-    }
+    agent any
 
     environment {
         APP_NAME = 'flask_test_app'
     }
 
     stages {
-        stage('Build Image') {
+        stage('1. Build Image') {
             steps {
                 echo 'Build docker image'
                 script {
@@ -22,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Publish Image') {
+        stage('2. Publish Image') {
             steps {
                 echo 'Publish Docker Image to Dockerhub'
                 script {
@@ -34,7 +30,7 @@ pipeline {
             }
         }
 
-        stage('Deploy To Production') {
+        stage('3. Deploy To Production') {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
