@@ -12,7 +12,7 @@ pipeline {
                 script {
                     app = docker.build("yzchg/$APP_NAME")
                     app.inside {
-                        sh 'echo $(wget --spider localhost:8082)'
+                        sh 'echo $(wget --spider localhost:8082 && netstat -tulpn | grep LISTEN)'
                     }
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
 
         stage('3. Deploy To Production') {
             steps {
-                input 'Deploy to Production?'
+                // input 'Deploy to Production?'
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'node1_ssh_userpass', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
