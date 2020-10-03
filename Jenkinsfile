@@ -47,7 +47,7 @@ pipeline {
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sshCommand remote: remote, command: "docker run --restart always --name $APP_NAME -dp 8081:8081 yzchg/$APP_NAME:latest"
+                        sshCommand remote: remote, command: "docker run --restart always --name $APP_NAME -dp 8082:8082 yzchg/$APP_NAME:latest"
                     }
                 }
             }
