@@ -16,4 +16,5 @@ def hello_world(username):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    # run the app
+    app.run()

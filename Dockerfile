@@ -22,4 +22,4 @@ COPY . .
 ENV PATH=/root/.local/bin:$PATH
 
 EXPOSE 8082
-CMD ["flask", "run", "-p", "8082"]
+CMD ["flask", "run", "--host", "0.0.0.0", "-p", "8082"]
