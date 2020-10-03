@@ -16,7 +16,7 @@ pipeline {
                 script {
                     app = docker.build("yzchg/$APP_NAME")
                     app.inside {
-                        sh 'echo $(wget --spider localhost:5000)'
+                        sh 'echo $(wget --spider localhost:8082)'
                     }
                 }
             }
