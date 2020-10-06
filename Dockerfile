@@ -20,6 +20,8 @@ COPY . .
 
 # update PATH environment variable
 ENV PATH=/root/.local/bin:$PATH
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
 
 EXPOSE 8082
 CMD ["flask", "run", "--host", "0.0.0.0", "-p", "8082"]

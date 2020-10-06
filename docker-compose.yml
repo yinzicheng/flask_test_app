@@ -1,0 +1,10 @@
+version: "3.8"
+services: 
+    web:
+        build: .
+        ports: 
+            - 8082:8082
+        environment: 
+            FLASK_ENV: development
+    redis:
+        image: "redis:alpine"
