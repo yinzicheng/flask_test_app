@@ -1,0 +1,21 @@
+FROM python:3.8-alpine
+WORKDIR /var/app
+
+# create venv 
+RUN python -m venv venv && . venv/bin/activate && python -m pip install --upgrade pip
+# install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# run test
+COPY . .
+RUN python -m pytest
+
+
+# update PATH environment variable
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_ENV=development
+
+EXPOSE 8082
+CMD ["flask", "run"]
