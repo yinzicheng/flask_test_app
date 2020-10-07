@@ -1,5 +1,5 @@
 # first stage
-FROM python:3.8-alpine AS build
+FROM python:3.8-alpine AS builder
 WORKDIR /var/app/src
 
 COPY requirements.txt .
@@ -15,7 +15,7 @@ FROM python:3.8-alpine
 WORKDIR /var/app/src
 
 # copy only the dependencies installation from the 1st stage image
-COPY --from=build /root/.local /root/.local
+COPY --from=builder /root/.local /root/.local
 COPY . .
 
 # update PATH environment variable
@@ -24,4 +24,4 @@ ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 EXPOSE 8082
-CMD ["flask", "run", "--host", "0.0.0.0", "-p", "8082"]
+CMD ["flask", "run"]
