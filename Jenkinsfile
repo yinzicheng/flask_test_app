@@ -34,11 +34,11 @@ pipeline {
             steps {
                 // input 'Deploy to Production?'
                 milestone(1)
-                withCredentials([usernamePassword(credentialsId: 'node1_ssh_userpass', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'vm1_ssh_userpass', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         def remote = [:]
-                        remote.name = 'node1'
-                        remote.host = env.node1_ip
+                        remote.name = 'vm1'
+                        remote.host = env.vm1_ip
                         remote.user = USERNAME
                         remote.password = USERPASS
                         remote.allowAnyHosts = true
