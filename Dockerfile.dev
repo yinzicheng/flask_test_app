@@ -7,8 +7,9 @@ RUN python -m venv venv && . venv/bin/activate && python -m pip install --upgrad
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# run test
+# copy source code
 COPY . .
+# run test
 RUN python -m pytest
 
 
