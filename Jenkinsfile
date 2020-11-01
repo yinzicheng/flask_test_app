@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         APP_NAME = 'flask_test_app'
+        APP_DIR = '~/flask_test_app'
     }
 
     stages {
@@ -30,10 +31,11 @@ pipeline {
                         script {
                             sshPut remote: remote, from: 'dist/flask_test_app.tar.gz', into: '/tmp'
                             sshCommand remote: remote, command: """
-                                . ~/.profile &&
-                                cd /tmp &&
-                                tar xvzf flask_test_app.tar.gz &&
-                                docker-compose up -d --build
+                                . ~/.profile 
+                                && id
+                                && rm -rf $APP_DIR && mkdir $APP_DIR && cp /tmp/flask_test_app.tar.gz $APP_DIR
+                                && tar xvzf $APP_DIR/flask_test_app.tar.gz
+                                && docker-compose -f $APP_DIR/docker-compose.yml up -d --build
                             """
                         }
                     }
