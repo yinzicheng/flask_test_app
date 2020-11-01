@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy source code and run docker-compose') {
             steps {
                 milestone(1)
-                withCredentials([usernamePassword(credentialsId: 'node1_ssh_userpass', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'vm1_ssh_userpass', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         def remote = [:]
                         remote.name = 'node1'
