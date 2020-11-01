@@ -1,7 +1,7 @@
 **/venv
-**/Jenkins
 **/__pycache__
 **/.pytest_cache
 **/.git
 **/.idea
 **/.vscode
+**/dist
