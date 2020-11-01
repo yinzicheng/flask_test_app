@@ -9,7 +9,7 @@ services:
             - 5000
         command: gunicorn --bind 0.0.0.0:5000 app:app
         environment:
-            FLASK_ENV: production
+            REDIS_HOST: redis
         depends_on:
             - redis
 

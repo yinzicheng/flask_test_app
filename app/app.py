@@ -1,11 +1,13 @@
 import time
 from flask import Flask, render_template
 import redis
+import os
 
 app = Flask(__name__)
 app_version = 1.0
 
-cache = redis.Redis(host='redis', port=6379)
+redis_host = os.getenv("REDIS_HOST")
+cache = redis.Redis(host=redis_host, port=6379)
 
 
 def get_hit_count():
