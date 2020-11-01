@@ -3,35 +3,21 @@ pipeline {
 
     environment {
         APP_NAME = 'flask_test_app'
+        APP_DIR = '~/flask_test_app'
     }
 
     stages {
 
-        stage('1. Build Image') {
+        stage('Package source code') {
             steps {
-                echo 'Build docker image'
-                script {
-                    app = docker.build("yzchg/$APP_NAME")
-                    app.inside {
-                        sh 'echo $(wget --spider localhost:5000)'
-                    }
-                }
+                sh '''
+                   rm -rf dist && mkdir dist
+                   tar cvzf dist/flask_test_app.tar.gz docker-compose.yml Dockerfile app/ nginx/
+                '''
             }
         }
 
-        stage('2. Publish Image') {
-            steps {
-                echo 'Publish Docker Image to Dockerhub'
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        // app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    }
-                }
-            }
-        }
-
-        stage('Deploy app to k8s cluster') {
+        stage('Deploy source code and run docker-compose') {
             steps {
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'vm1_ssh_userpass', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {

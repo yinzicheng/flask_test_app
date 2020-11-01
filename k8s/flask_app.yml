@@ -21,6 +21,9 @@ spec:
               cpu: "200m"
           ports:
             - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-service
 
 ---
 apiVersion: v1
